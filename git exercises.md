@@ -1,145 +1,96 @@
-# Git Excercises
-
-
-### Master
-
-```sh
+Master
+text
 git commit
-```
+Creates a new commit from staged files.
 
-Used to create a commit.
-
-```sh
+text
 git push
-```
+Sends your commits to the remote repository.
 
-Used to push all commits made.
-
-### Commit-One-File
-
-```sh
+Commit-One-File
+text
 git add <file>
-```
+Stages a specific file for commit.
 
-Registers an untracked file.
-
-### Commit-One-File-Staged
-
-```sh
+Commit-One-File-Staged
+text
 git restore --staged <file>
-```
+Removes a file from the staging area without deleting changes.
 
-Unstages a file so it is not committed.
+Ignore-Them
+A .gitignore file lists files and folders Git should skip.
 
-### Ignore-Them
-
-A .gitignore is a file that contains all files and directories to be ignored.
-
-```sh
+text
 touch .gitignore
-```
+Makes a new .gitignore file.
 
-To create the file
-
-```sh
+text
 nano .gitignore
-```
+Opens .gitignore for editing in the terminal.
 
-To edit the file in the terminal.
-
-```sh
+text
 *.extension
-```
+Skips all files with a certain extension.
 
-Ignores all files with the specific extension (ReGex pattern matching).
-
-```sh
+text
 directories/
-```
+Excludes the directories folder from tracking.
 
-Ignores the `directories` folder.
-
-### Chase-Branch
-
-```sh
+Chase-Branch
+text
 git merge escaped
-```
+Merges the escaped branch; if chase is its ancestor, no issues occur.
 
-Since chase is a direct ancestor this works and nothing bad happens.
+Merge-Conflict
+If a merge conflict happens, resolve it by editing the files, then use:
 
-### Merge-Conflict
+text
+git merge
+to finish merging.
 
-Manually fix the merge conflict and use `git merge` to merge the branch.
+Save-Your-works
+text
+git stash
+Saves your current changes temporarily.
 
-### Save-Your-works
+text
+git stash pop
+Restores the stashed changes.
 
-```sh
-git stash 
-```
-`git stash` is used to stash my current work and `git stash pop` is used to undo that.
+Typical flow: stash changes, fix and commit a bug, pop the stash, finish your work, and commit again.
 
-After stashing the current work, fix the bug and make a commit.
-Then `pop` the stash and then finish the work before executing the final commit.
-
-### Change-Branch-History
-
-```sh
+Change-Branch-History
+text
 git rebase hot-<branch>
-```
+Moves your branch’s commits to start after the latest commit on hot-<branch>.
 
-From what I understand, rebase will find the common ancestor, moves my current branch (excluding commits) on top of the branch passed in as the argument, and then reapplies the commits.
+Remove-Ignored
+text
+git rm <file>
+Deletes a file from the repository and stages its removal.
 
-Running it once will result in the required diretcory structure.
+Case-Sensitive-Rename
+text
+git mv <oldname> <newname>
+Renames a file and stages the change.
 
-### Remove-Ignored
+Fix-Typo
+text
+git commit --amend -am "fixed typo"
+Amends the previous commit with a new message after fixing a typo.
 
-```sh
-git -rm
-```
-
-Is used to remove a file from the git tree.
-
-### Case-Sensitive-Rename
-
-```sh
-git -mv
-```
-
-Is used to rename a file.
-
-### Fix-Typo
-
-```sh
-git commit -am --ammend "fixed typo"
-```
-
-After fixing the typo, use the above command to ammend on top if the last commit with the appoproate commit message.
-
-### Forge-Date
-
-```sh
+Forge-Date
+text
 git commit --amend --no-edit --date="1987-01-01T00:00:00"
-```
+Changes the date of the last commit without editing its message.
 
-Is used to change the commit date. `--no-edit` ensures nothing about the commit changes.
-
-### Fix-Old-Typo        
-
-```sh
+Fix-Old-Typo
+text
 git rebase -i HEAD~2
-```
+Starts an interactive rebase for the last two commits.
 
-Running the above command will open a commit message wherein we update the message of the second line (since the second last commit) from `pick` to `edit`. 
+Change the second line from pick to edit, fix the typo, commit, then:
 
-```sh
-pick <last commit>
-edit <second last commit> << changed from pick -> edit
-```
-
-Now the typo is fixed and the changes are committed.
-
-```sh
+text
 git rebase --continue
-```
-
-Continues the rebase.
+to apply the changes and finish rebasing.
