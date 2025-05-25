@@ -1,31 +1,28 @@
-# master
+# 1
 
 ```
 git start master
 ```
 
-# commit-one-file
-
-In this exercise we need to only commit one file, for this we first add the file to staged area and then commit it
+# 2
+Here, we want to commit just one file, so we stage the specific file and then commit.
 
 ```
 git add A.txt
 git commit -m 'Add A.txt'
 ```
 
-# commit-one-staged-file
+# 3
 
-In this exercise we need to commit only one of the staged files, we can do this by unstaging one of the files and commiting the other
-
+To ensure only one of the staged files gets committed, we unstage the one we don't want and then commit the remaining.
 ```
 git restore --staged B.txt
 git commit -m 'Add A.txt'
 ```
 
-# ignore-them
+# 4
 
-In this exercise we need to set some files to be ignore by git, this can be done using the `.gitignore` file, first we create the `.gitignore` file
-
+For this step, we need Git to ignore certain files. This is handled by creating a .gitignore file.
 ```
 touch .gitignore
 nvim .gitignore
@@ -39,44 +36,40 @@ Add the following to `.gitignore`
 *.jar
 libraries/
 ```
+This setup will make Git skip tracking files with those extensions and the libraries directory.
 
-This will ignore all files ending with `.exe` `.o` `.jar` and the libraries folder
-
-Now we need to stage the remaining files and commit them
+Now, stage all the files you want and commit them:
 ```
 git add .
 git commit -m "Add .gitignore and file.txt"
 ```
 
-# chase-branch
+# 5
 
-We need to merge the current head into the escaped branch which is two commits ahead, we can do this using the merge command
+Here, we merge the current branch with the escaped branch, which is ahead by two commits, using the merge command.
 
 ```
 git merge escaped
 ```
 
-# merge-conflict
+# 6
 
-In this exercise we need to merge current branch into `another-piece-of-work` but the merge will fail due to conflicts, and we will need to manually fix the conflicts and continue the merge
-
+In this task, merging with another-piece-of-work will create conflicts. You'll need to resolve these conflicts manually before you can finish the merge.
 ```
 git merge another-piece-of-work
 nvim equation.txt
 ```
 
-Edit the file removing the lines added by git and fix the equation
-After making the changes stage the file and commit the changes
+After editing the file and resolving conflicts, stage and commit your changes.
 
 ```
 git add equation.txt
 git commit -m "Merge another-piece-of-work"
 ```
 
-# save-your-work
+# 7
 
-In this exercise we need to fix a bug, we already have partial work so we first need to stash those changes and then fix the bug 
-
+We need to temporarily set aside our incomplete work, so we stash it, fix the bug, and then bring our changes back.
 ```
 git stash
 nvim bug.txt
@@ -84,7 +77,7 @@ git add bug.txt
 git commit -m "fix(bug)"
 ```
 
-Now we have fixed the bug and can finish our work
+After the bug fix, retrieve your stashed work and finish up:
 
 ```
 git stash pop
@@ -92,35 +85,36 @@ git add .
 git commit -m "Finish work"
 ```
 
-# change-your-branch
+# 8
 
-In this exercise we need to include a bugfix that was added a few commits after HEAD, we can do this using the git rebase command
+To incorporate a bugfix from a different branch, we use the rebase command.
 
 ```
 git rebase hot-bugfix
 ```
 
-# remove-ignored
+# 9
 
-In this exercise we need to stop git from tracking files that we added to `.gitignore` after git started tracking them, we can do this using the `git rm` command 
+To stop tracking files that are now in .gitignore, we use git rm to untrack them and then commit.
+ 
 
 ```
 git rm ignored.txt
 git commit -m "Remove ignored.txt"
 ```
 
-# case-sensitive-filename
+# 10
 
-In this exercise we need to rename a file, we can do this with `git mv` command, we do this instead of just `mv` so that git keeps track of the file
+For renaming a file (including case changes), we use git mv so Git recognizes the rename.
 
 ```
 git mv File.txt file.txt
 git commit -m "Rename File.txt to file.txt"
 ```
 
-# fix-typo
+# 11
 
-In this exercise we need to fix a typo we made in the last commit, but we dont want to make a new commit for this, we can mmend the last commit using the `--amend` flag in `git commit` command
+If you spot a typo in your last commit, you can fix it and amend the previous commit instead of making a new one.
 
 ```
 nvim file.txt
@@ -128,32 +122,31 @@ git add file.txt
 git commit --amend
 ```
 
-# forge-date
+# 12
 
-We can forge the date of a commit using the `--date` flag in `git commit` command, for the format we can see the date in `git log`
+To change the date on a commit, use the --date flag with git commit --amend, using the date format shown in git log.
 
 ```
 git commit --date "Sun May 18 18:46:55 1987 +0530" --amend
 ```
 
-# fix-old-typo
+# 13
 
-In this exercise we need to fix a typo in a told commit, for this we can use git rebase in interactive mode and edit the commit with the typo
-We start the rebase in interactive mode using the `-i` flag
+If you need to correct an older commit, start an interactive rebase, edit the commit, and amend it as needed.
 
 ```
 git rebase -i
 ```
 
-Now we edit the commit with the typo by changing the `pick` to `edit`, then we save and close vim
-Edit file.txt and fix the typo, then stage the changes and amend the commit
+Mark the commit for editing by changing pick to edit, then save and exit.
+After fixing the typo in file.txt, stage and amend the commit:
 
 ```
 git add file.txt
 git commit --amend '-S'
 ```
 
-Now we will continue the rebase using the `--continue` flag, and fix the merge conflicts that arise
+Continue the rebase and resolve any conflicts that come up:
 
 ```
 git rebase --continue
