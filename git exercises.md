@@ -10,14 +10,14 @@ use
 git commit -m "add A.txt"
 git verify`
 
-##exercise 3 commit-one-file-stagged
+## exercise 3 commit-one-file-stagged
 use
 `git reset HEAD A.txt 
 git commit -m "destage one file"
 git verify`
  here the git reset removes the unwanted file and then after git commit will commit the remaining files 
 
- ##exercise 4 ignore them
+ ## exercise 4 ignore them
  use this to create a git ignore
 ` *.exe
 *.o
@@ -29,13 +29,13 @@ after that use
 git commit -m "commit useful files"
 git verify`
 
-##exercise 4 chase branch
+## exercise 4 chase branch
 use 
 `git checkout chase-branch
 git merge escaped
 git verify`
 
-##exercise 5 merge conflict
+## exercise 5 merge conflict
 
 use
 `git merge another-piece-of-work
@@ -44,7 +44,7 @@ then commit and verify
 `git commit -m "merge and resolve"
 git verify`
 
-##exercise 6 save your work
+## exercise 6 save your work
 `git stash`
 Fix bug in bug.txt
 `git add bug.txt
@@ -82,7 +82,7 @@ here we should Edit file.txt to fix the typo
 git commit --amend
 git verify
 `
-##exercise 11 forge date
+## exercise 11 forge date
 use 
 `
 git commit --amend --date="whatever the date you want "
